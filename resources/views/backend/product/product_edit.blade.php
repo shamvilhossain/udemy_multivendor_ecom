@@ -273,14 +273,50 @@
 
     <!-- /// End Main Image Thambnail Update ////// -->
 
+    <!-- /// Update Multi Image  ////// -->
+
+    <div class="page-content">
+        <h6 class="mb-0 text-uppercase">Update Multi Image </h6>
+        <hr>
+        <div class="card">
+            <div class="card-body">
+                <table class="table mb-0 table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">#Sl</th>
+                            <th scope="col">Image</th>
+                            <th scope="col">Change Image </th>
+                            <th scope="col">Delete </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                         <form method="post" action="{{ route('update.product.multiimage') }}" enctype="multipart/form-data" >
+                            @csrf
+
+                            @foreach ($multiImgs as $key => $img)
+                                <tr>
+                                    <th scope="row">{{ $key + 1 }}</th>
+                                    <td> <img src="{{ asset($img->photo_name) }}" style="width:70; height: 40px;"> </td>
+                                    <td> <input type="file" class="form-group" name="multi_img[{{ $img->id }}]">
+                                    </td>
+                                    <td>
+                                        <input type="submit" class="btn btn-primary px-4" value="Update Image " />
+                                        <a href="" class="btn btn-danger"> Delete </a>
+                                    </td>
+                                </tr>
+                            @endforeach
+
+                        </form>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 
 
 
-
-
-
-
-
+    <!-- /// End Update Multi Image  ////// -->
 
 
     <script type="text/javascript">
@@ -381,7 +417,7 @@
 
                     $.each(data, function(index, file) { //loop though each file
                         if (/(\.|\/)(gif|jpe?g|png|webp)$/i.test(file
-                            .type)) { //check supported file type
+                                .type)) { //check supported file type
                             var fRead = new FileReader(); //new filereader
                             fRead.onload = (function(file) { //trigger function on successful read
                                 return function(e) {
@@ -389,7 +425,7 @@
                                             e.target.result).width(100)
                                         .height(80); //create image element 
                                     $('#preview_img').append(
-                                    img); //append image to output element
+                                        img); //append image to output element
                                 };
                             })(file);
                             fRead.readAsDataURL(file); //URL representing the file's data.
