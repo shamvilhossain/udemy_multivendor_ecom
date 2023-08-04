@@ -64,5 +64,13 @@ class IndexController extends Controller
 
     } // End Method 
 
+    public function CatWiseProduct(Request $request,$id,$slug){
+        $products = Product::where('status',1)->where('category_id',$id)->orderBy('id','DESC')->get();
+        $categories = Category::orderBy('category_name','ASC')->get();
+  
+        return view('frontend.product.category_view',compact('products','categories'));
+  
+    }// End Method 
+
     
 }
