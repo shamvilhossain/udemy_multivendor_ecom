@@ -5,10 +5,10 @@
             <div class="archive-header">
                 <div class="row align-items-center">
                     <div class="col-xl-3">
-                        <h1 class="mb-15">{{ $breadcat->category_name }}</h1>
+                        <h5 class="mb-15">{{ $breadsubcat->subcategory_name }}</h5>
                         <div class="breadcrumb">
                             <a href="index.html" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
-                            <span></span> {{ $breadcat->category_name }}
+                            <span></span>{{ $breadsubcat->category->category_name }} <span></span>  {{ $breadsubcat->subcategory_name }}
                         </div>
                     </div>
 
@@ -107,7 +107,7 @@
                                 </div>
                                 <div class="product-content-wrap">
                                     <div class="product-category">
-                                        <a href="shop-grid-right.html">{{ $product['category']['category_name'] }}</a>
+                                        <a href="shop-grid-right.html">{{ $product['subcategory']['subcategory_name'] }}</a>
                                     </div>
                                     <h2><a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">
                                             {{ $product->product_name }} </a></h2>
@@ -155,6 +155,11 @@
                         </div>
                         <!--end product card-->
                     @endforeach
+
+
+
+
+
 
                 </div>
                 <!--product grid-->
@@ -205,7 +210,7 @@
 
                 <!-- Product sidebar Widget -->
                 <div class="sidebar-widget product-sidebar mb-30 p-30 bg-grey border-radius-10">
-                    <h5 class="mb-15">{{ $breadcat->category_name }}</h5>
+                    <h5 class="section-title style-1 mb-30">New products</h5>
 
                     @foreach ($newProduct as $product)
                         <div class="single-post clearfix">
@@ -231,7 +236,6 @@
                     @endforeach
 
                 </div>
-
 
             </div>
         </div>
