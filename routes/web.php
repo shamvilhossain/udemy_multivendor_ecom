@@ -204,7 +204,8 @@ Route::get('/product/subcategory/{id}/{slug}', [IndexController::class, 'SubCatW
 // Product View Modal With Ajax
 
 Route::get('/product/view/modal/{id}', [IndexController::class, 'ProductViewAjax']);
-
+/// Add to cart store data
+Route::post('/cart/data/store/{id}', [CartController::class, 'AddToCart']);
 
 
 require __DIR__.'/auth.php';
