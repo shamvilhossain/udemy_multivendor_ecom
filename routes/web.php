@@ -240,8 +240,15 @@ Route::middleware(['auth','role:user'])->group(function() {
     
 
     }); 
+
+    // Cart All Route 
+    Route::controller(CartController::class)->group(function(){
+        Route::get('/mycart' , 'MyCart')->name('mycart');
+
+
+    }); 
    
-}); // end group middleware
+}); // end group User middleware
 
 
 require __DIR__.'/auth.php';

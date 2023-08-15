@@ -118,6 +118,12 @@ class CartController extends Controller
 
     }// End Method
 
+    public function MyCart(){
+
+        return view('frontend.mycart.view_mycart');
+
+    }// End Method
+
 
 
 
