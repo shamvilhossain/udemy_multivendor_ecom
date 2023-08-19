@@ -19,6 +19,7 @@ use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\User\WishlistController;
 use App\Http\Controllers\User\CompareController;
 use App\Http\Controllers\Backend\CouponController;
+use App\Http\Controllers\Backend\ShippingAreaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -193,7 +194,7 @@ Route::middleware(['auth','role:admin'])->group(function() {
 
     });
 
-     // Banner All Route 
+     // Coupon All Route 
     Route::controller(CouponController::class)->group(function(){
         Route::get('/all/coupon' , 'AllCoupon')->name('all.coupon');
         Route::get('/add/coupon' , 'AddCoupon')->name('add.coupon');
@@ -201,6 +202,19 @@ Route::middleware(['auth','role:admin'])->group(function() {
         Route::get('/edit/coupon/{id}' , 'EditCoupon')->name('edit.coupon');
         Route::post('/update/coupon' , 'UpdateCoupon')->name('update.coupon');
         Route::get('/delete/coupon/{id}' , 'DeleteCoupon')->name('delete.coupon');
+
+    }); 
+
+    // Shipping State All Route 
+    Route::controller(ShippingAreaController::class)->group(function(){
+        Route::get('/all/state' , 'AllState')->name('all.state');
+        Route::get('/add/state' , 'AddState')->name('add.state');
+        Route::post('/store/state' , 'StoreState')->name('store.state');
+        Route::get('/edit/state/{id}' , 'EditState')->name('edit.state');
+        Route::post('/update/state' , 'UpdateState')->name('update.state');
+        Route::get('/delete/state/{id}' , 'DeleteState')->name('delete.state');
+
+        Route::get('/district/ajax/{division_id}' , 'GetDistrict');
 
     }); 
    
