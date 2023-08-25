@@ -728,7 +728,7 @@
     <!--  ////////////// Start Apply Coupon ////////////// -->
     <script type="text/javascript">
     
-            function applyCoupon(id){
+            function applyCoupon(){
             var coupon_name = $('#coupon_name').val();
                 $.ajax({
                     type: "POST",
@@ -736,6 +736,10 @@
                     data: {coupon_name:coupon_name},
                     url: "/coupon-apply",
                     success:function(data){
+
+                        if (data.validity == true) {
+                            $('#couponField').hide();
+                        }
                         
                         // Start Message 
                 const Toast = Swal.mixin({
