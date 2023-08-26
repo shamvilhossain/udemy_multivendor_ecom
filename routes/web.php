@@ -253,6 +253,21 @@ Route::post('/coupon-apply', [CartController::class, 'CouponApply']);
 Route::get('/coupon-calculation', [CartController::class, 'CouponCalculation']);
 Route::get('/coupon-remove', [CartController::class, 'CouponRemove']);
 
+// Checkout Page Route 
+Route::get('/checkout', [CartController::class, 'CheckoutCreate'])->name('checkout');
+
+ // Cart All Route 
+ Route::controller(CartController::class)->group(function(){
+    Route::get('/mycart' , 'MyCart')->name('mycart');
+    Route::get('/get-cart-product' , 'GetCartProduct');
+    Route::get('/cart-remove/{rowId}' , 'CartRemove');
+
+    Route::get('/cart-decrement/{rowId}' , 'CartDecrement');
+    Route::get('/cart-increment/{rowId}' , 'CartIncrement');
+    
+
+});
+
 /// User All Route
 Route::middleware(['auth','role:user'])->group(function() {
 
@@ -272,16 +287,6 @@ Route::middleware(['auth','role:user'])->group(function() {
 
     }); 
 
-    // Cart All Route 
-    Route::controller(CartController::class)->group(function(){
-        Route::get('/mycart' , 'MyCart')->name('mycart');
-        Route::get('/get-cart-product' , 'GetCartProduct');
-        Route::get('/cart-remove/{rowId}' , 'CartRemove');
-
-        Route::get('/cart-decrement/{rowId}' , 'CartDecrement');
-        Route::get('/cart-increment/{rowId}' , 'CartIncrement');
-
-    }); 
    
 }); // end group User middleware
 
