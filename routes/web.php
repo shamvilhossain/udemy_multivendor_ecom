@@ -20,6 +20,7 @@ use App\Http\Controllers\User\WishlistController;
 use App\Http\Controllers\User\CompareController;
 use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\ShippingAreaController;
+use App\Http\Controllers\User\CheckoutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -284,6 +285,14 @@ Route::middleware(['auth','role:user'])->group(function() {
         Route::get('/get-compare-product' , 'GetCompareProduct');
         Route::get('/compare-remove/{id}' , 'CompareRemove'); 
     
+
+    }); 
+
+     // Checkout All Route 
+    Route::controller(CheckoutController::class)->group(function(){
+        Route::get('/district-get/ajax/{division_id}' , 'DistrictGetAjax');
+        Route::get('/state-get/ajax/{district_id}' , 'StateGetAjax');
+        Route::post('/checkout/store' , 'CheckoutStore')->name('checkout.store');
 
     }); 
 
