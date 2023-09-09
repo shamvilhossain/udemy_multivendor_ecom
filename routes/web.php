@@ -22,6 +22,8 @@ use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\ShippingAreaController;
 use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\User\StripeController;
+use App\Http\Controllers\Backend\OrderController;
+use App\Http\Controllers\Backend\VendorOrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -99,7 +101,13 @@ Route::middleware(['auth','role:vendor'])->group(function () {
         Route::get('/vendor/subcategory/ajax/{category_id}' , 'VendorGetSubCategory');
 
     });
-});
+
+    Route::controller(VendorOrderController::class)->group(function(){
+        Route::get('/vendor/order' , 'VendorOrder')->name('vendor.order');
+        
+     
+    });
+});// end Vendor Group middleware
 
 
 
@@ -217,6 +225,13 @@ Route::middleware(['auth','role:admin'])->group(function() {
         Route::get('/delete/state/{id}' , 'DeleteState')->name('delete.state');
 
         Route::get('/district/ajax/{division_id}' , 'GetDistrict');
+
+    }); 
+
+    // Admin Order All Route 
+    Route::controller(OrderController::class)->group(function(){
+        Route::get('/pending/order' , 'PendingOrder')->name('pending.order');
+    
 
     }); 
    
