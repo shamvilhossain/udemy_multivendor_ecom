@@ -13,6 +13,7 @@ use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Controllers\Backend\VendorProductController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\BannerController;
+use App\Http\Controllers\Backend\ReturnController;
 
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\CartController;
@@ -242,6 +243,15 @@ Route::middleware(['auth','role:admin'])->group(function() {
         Route::get('/admin/invoice/download/{order_id}' , 'AdminInvoiceDownload')->name('admin.invoice.download');
 
     }); 
+
+     // Return Order All Route 
+    Route::controller(ReturnController::class)->group(function(){
+        Route::get('/return/request' , 'ReturnRequest')->name('return.request');
+        Route::get('/return/request/approved/{order_id}' , 'ReturnRequestApproved')->name('return.request.approved');
+        Route::get('/complete/return/request' , 'CompleteReturnRequest')->name('complete.return.request');
+
+
+    });
    
 }); // End Middleware
 
