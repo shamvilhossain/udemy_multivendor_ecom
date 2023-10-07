@@ -28,6 +28,7 @@ use App\Http\Controllers\Backend\VendorOrderController;
 use App\Http\Controllers\User\AllUserController;
 use App\Http\Controllers\Backend\ReportController;
 use App\Http\Controllers\Backend\ActiveUserController;
+use App\Http\Controllers\User\ReviewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -325,6 +326,13 @@ Route::get('/checkout', [CartController::class, 'CheckoutCreate'])->name('checko
     Route::get('/cart-increment/{rowId}' , 'CartIncrement');
     
 
+});
+
+// Frontend Review All Route 
+Route::controller(ReviewController::class)->group(function(){
+
+    Route::post('/store/review' , 'StoreReview')->name('store.review'); 
+    
 });
 
 /// User All Route
