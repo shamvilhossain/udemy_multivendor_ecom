@@ -1,5 +1,8 @@
 @extends('frontend.master_dashboard')
 @section('main')
+@section('title')
+    Home Easy Multi Vendor Shop 
+@endsection
     @include('frontend.home.home_slider')
 
     <!--End hero slider-->
