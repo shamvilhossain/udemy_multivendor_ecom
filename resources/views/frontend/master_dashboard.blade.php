@@ -1,11 +1,17 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
+@php
+    $seo = App\Models\Seo::find(1);
+@endphp
 
 <head>
     <meta charset="utf-8" />
     <title> @yield('title')</title>
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <meta name="description" content="" />
+    <meta name="title" content="{{ $seo->meta_title }}" />
+    <meta name="author" content="{{ $seo->meta_author }}" />
+    <meta name="keywords" content="{{ $seo->meta_keyword }}" />
+    <meta name="description" content="{{ $seo->meta_description }}" />>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta property="og:title" content="" />
@@ -17,7 +23,7 @@
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/plugins/animate.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/main.css?v=5.3') }}" />
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
     <script src="https://js.stripe.com/v3/"></script>
 </head>
 
@@ -79,23 +85,23 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
     <script>
-        @if(Session::has('message'))
-        var type = "{{ Session::get('alert-type','info') }}"
-        switch(type){
-            case 'info':
-            toastr.info(" {{ Session::get('message') }} ");
-            break;
-            case 'success':
-            toastr.success(" {{ Session::get('message') }} ");
-            break;
-            case 'warning':
-            toastr.warning(" {{ Session::get('message') }} ");
-            break;
-            case 'error':
-            toastr.error(" {{ Session::get('message') }} ");
-            break; 
-        }
-        @endif 
+        @if (Session::has('message'))
+            var type = "{{ Session::get('alert-type', 'info') }}"
+            switch (type) {
+                case 'info':
+                    toastr.info(" {{ Session::get('message') }} ");
+                    break;
+                case 'success':
+                    toastr.success(" {{ Session::get('message') }} ");
+                    break;
+                case 'warning':
+                    toastr.warning(" {{ Session::get('message') }} ");
+                    break;
+                case 'error':
+                    toastr.error(" {{ Session::get('message') }} ");
+                    break;
+            }
+        @endif
     </script>
     <script type="text/javascript">
         $.ajaxSetup({
@@ -191,7 +197,7 @@
                     size: size,
                     quantity: quantity,
                     product_name: product_name,
-                    vendor:vendor
+                    vendor: vendor
                 },
                 url: "/cart/data/store/" + id,
                 success: function(data) {
@@ -244,7 +250,7 @@
                     size: size,
                     quantity: quantity,
                     product_name: product_name,
-                    vendor:vendor
+                    vendor: vendor
                 },
                 url: "/dcart/data/store/" + id,
                 success: function(data) {
@@ -588,38 +594,38 @@
         compare();
         // / End Load Compare Data -->
         // Compare Remove Start 
- 
-        function compareRemove(id){
+
+        function compareRemove(id) {
             $.ajax({
                 type: "GET",
                 dataType: 'json',
-                url: "/compare-remove/"+id,
-                success:function(data){
-                compare();
-                     // Start Message 
-            const Toast = Swal.mixin({
-                  toast: true,
-                  position: 'top-end',
-                  
-                  showConfirmButton: false,
-                  timer: 3000 
-            })
-            if ($.isEmptyObject(data.error)) {
-                    
-                    Toast.fire({
-                    type: 'success',
-                    icon: 'success', 
-                    title: data.success, 
+                url: "/compare-remove/" + id,
+                success: function(data) {
+                    compare();
+                    // Start Message 
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+
+                        showConfirmButton: false,
+                        timer: 3000
                     })
-            }else{
-               
-                Toast.fire({
-                    type: 'error',
-                    icon: 'error', 
-                    title: data.error, 
-                    })
-                }
-              // End Message  
+                    if ($.isEmptyObject(data.error)) {
+
+                        Toast.fire({
+                            type: 'success',
+                            icon: 'success',
+                            title: data.success,
+                        })
+                    } else {
+
+                        Toast.fire({
+                            type: 'error',
+                            icon: 'error',
+                            title: data.error,
+                        })
+                    }
+                    // End Message  
                 }
             })
         }
@@ -628,17 +634,17 @@
 
     <!--  // Start Load MY Cart // -->
     <script type="text/javascript">
-        function cart(){
+        function cart() {
             $.ajax({
                 type: 'GET',
                 url: '/get-cart-product',
                 dataType: 'json',
-                success:function(response){
+                success: function(response) {
                     // console.log(response)
 
-                var rows = ""
-                $.each(response.carts, function(key,value){
-                    rows += `<tr class="pt-30">
+                    var rows = ""
+                    $.each(response.carts, function(key, value) {
+                        rows += `<tr class="pt-30">
                     <td class="custome-checkbox pl-30">
                             
                     </td>
@@ -676,7 +682,7 @@
                     </td>
                     <td class="action text-center" data-title="Remove">
                     <a type="submit" class="text-body"  id="${value.rowId}" onclick="cartRemove(this.id)"><i class="fi-rs-trash"></i></a></td>
-                </tr>`  
+                </tr>`
                     });
                     $('#cartPage').html(rows);
                 }
@@ -684,132 +690,133 @@
         }
         cart();
 
-    // Cart Remove Start 
-    function cartRemove(id){
-        $.ajax({
-            type: "GET",
-            dataType: 'json',
-            url: "/cart-remove/"+id,
-            success:function(data){
-                cart();
-                miniCart();
-                couponCalculation();
+        // Cart Remove Start 
+        function cartRemove(id) {
+            $.ajax({
+                type: "GET",
+                dataType: 'json',
+                url: "/cart-remove/" + id,
+                success: function(data) {
+                    cart();
+                    miniCart();
+                    couponCalculation();
                     // Start Message 
-            const Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
-                
-                showConfirmButton: false,
-                timer: 3000 
-        })
-        if ($.isEmptyObject(data.error)) {
-                
-                Toast.fire({
-                type: 'success',
-                icon: 'success', 
-                title: data.success, 
-                })
-        }else{
-            
-            Toast.fire({
-                type: 'error',
-                icon: 'error', 
-                title: data.error, 
-                })
-            }
-            // End Message  
-            }
-        })
-    }
-    // Cart Remove End 
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
 
-    // Cart Decrement Start
-    function cartDecrement(rowId){
-        $.ajax({
-            type: 'GET',
-            url: "/cart-decrement/"+rowId,
-            dataType: 'json',
-            success:function(data){
-                couponCalculation();
-                cart();
-                miniCart();
-            }
-        });
-    }
-    // Cart Decrement End 
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+                    if ($.isEmptyObject(data.error)) {
 
-    // Cart INCREMENT 
-    function cartIncrement(rowId){
-        $.ajax({
-            type: 'GET',
-            url: "/cart-increment/"+rowId,
-            dataType: 'json',
-            success:function(data){
-                couponCalculation();
-                cart();
-                miniCart();
-            }
-        });
-    }
-    // Cart INCREMENT End 
+                        Toast.fire({
+                            type: 'success',
+                            icon: 'success',
+                            title: data.success,
+                        })
+                    } else {
+
+                        Toast.fire({
+                            type: 'error',
+                            icon: 'error',
+                            title: data.error,
+                        })
+                    }
+                    // End Message  
+                }
+            })
+        }
+        // Cart Remove End 
+
+        // Cart Decrement Start
+        function cartDecrement(rowId) {
+            $.ajax({
+                type: 'GET',
+                url: "/cart-decrement/" + rowId,
+                dataType: 'json',
+                success: function(data) {
+                    couponCalculation();
+                    cart();
+                    miniCart();
+                }
+            });
+        }
+        // Cart Decrement End 
+
+        // Cart INCREMENT 
+        function cartIncrement(rowId) {
+            $.ajax({
+                type: 'GET',
+                url: "/cart-increment/" + rowId,
+                dataType: 'json',
+                success: function(data) {
+                    couponCalculation();
+                    cart();
+                    miniCart();
+                }
+            });
+        }
+        // Cart INCREMENT End 
     </script>
-    
+
     <!--  // End Load MY Cart // -->
 
     <!--  ////////////// Start Apply Coupon ////////////// -->
     <script type="text/javascript">
-    
-            function applyCoupon(){
+        function applyCoupon() {
             var coupon_name = $('#coupon_name').val();
-                $.ajax({
-                    type: "POST",
-                    dataType: 'json',
-                    data: {coupon_name:coupon_name},
-                    url: "/coupon-apply",
-                    success:function(data){
-                        couponCalculation();
-                        if (data.validity == true) {
-                            $('#couponField').hide();
-                        }
-                        
-                        // Start Message 
-                const Toast = Swal.mixin({
+            $.ajax({
+                type: "POST",
+                dataType: 'json',
+                data: {
+                    coupon_name: coupon_name
+                },
+                url: "/coupon-apply",
+                success: function(data) {
+                    couponCalculation();
+                    if (data.validity == true) {
+                        $('#couponField').hide();
+                    }
+
+                    // Start Message 
+                    const Toast = Swal.mixin({
                         toast: true,
                         position: 'top-end',
-                        
+
                         showConfirmButton: false,
-                        timer: 3000 
-                })
-                if ($.isEmptyObject(data.error)) {
-                        
+                        timer: 3000
+                    })
+                    if ($.isEmptyObject(data.error)) {
+
                         Toast.fire({
-                        type: 'success',
-                        icon: 'success', 
-                        title: data.success, 
+                            type: 'success',
+                            icon: 'success',
+                            title: data.success,
                         })
-                }else{
-                    
-                Toast.fire({
-                        type: 'error',
-                        icon: 'error', 
-                        title: data.error, 
+                    } else {
+
+                        Toast.fire({
+                            type: 'error',
+                            icon: 'error',
+                            title: data.error,
                         })
                     }
                     // End Message  
-                    }
-                })
-            }
+                }
+            })
+        }
 
-            // Start CouponCalculation Method   
-            function couponCalculation(){
-                $.ajax({
-                    type: 'GET',
-                    url: "/coupon-calculation",
-                    dataType: 'json',
-                    success:function(data){
-                        if (data.total) {
-                            $('#couponCalField').html(
-                                ` <tr>
+        // Start CouponCalculation Method   
+        function couponCalculation() {
+            $.ajax({
+                type: 'GET',
+                url: "/coupon-calculation",
+                dataType: 'json',
+                success: function(data) {
+                    if (data.total) {
+                        $('#couponCalField').html(
+                            ` <tr>
                                 <td class="cart_total_label">
                                     <h6 class="text-muted">Subtotal</h6>
                                 </td>
@@ -826,10 +833,10 @@
                                     <h4 class="text-brand text-end">$${data.total}</h4>
                                 </td>
                             </tr>
-                            ` ) 
-                        }else{
-                            $('#couponCalField').html(
-                                `<tr>
+                            `)
+                    } else {
+                        $('#couponCalField').html(
+                            `<tr>
                                     <td class="cart_total_label">
                                         <h6 class="text-muted">Subtotal</h6>
                                     </td>
@@ -862,57 +869,57 @@
                                         <h4 class="text-brand text-end">$${data.total_amount}</h4>
                                                     </td>
                                 </tr> `
-                            ) 
-                        } 
+                        )
                     }
-                })
-            } 
-            couponCalculation();
-            
-            // Start CouponCalculation Method 
-    </script>
-  
-     <!--  ////////////// End Apply Coupon ////////////// -->
+                }
+            })
+        }
+        couponCalculation();
 
-        <script type="text/javascript">
-            // Coupon Remove Start 
-            function couponRemove(){
-                    $.ajax({
-                        type: "GET",
-                        dataType: 'json',
-                        url: "/coupon-remove",
-                        success:function(data){
-                        couponCalculation();
-                        $('#couponField').show();
-                            // Start Message 
+        // Start CouponCalculation Method 
+    </script>
+
+    <!--  ////////////// End Apply Coupon ////////////// -->
+
+    <script type="text/javascript">
+        // Coupon Remove Start 
+        function couponRemove() {
+            $.ajax({
+                type: "GET",
+                dataType: 'json',
+                url: "/coupon-remove",
+                success: function(data) {
+                    couponCalculation();
+                    $('#couponField').show();
+                    // Start Message 
                     const Toast = Swal.mixin({
                         toast: true,
                         position: 'top-end',
-                        
+
                         showConfirmButton: false,
-                        timer: 3000 
+                        timer: 3000
                     })
                     if ($.isEmptyObject(data.error)) {
-                            
-                            Toast.fire({
+
+                        Toast.fire({
                             type: 'success',
-                            icon: 'success', 
-                            title: data.success, 
-                            })
-                    }else{
-                    
-                Toast.fire({
+                            icon: 'success',
+                            title: data.success,
+                        })
+                    } else {
+
+                        Toast.fire({
                             type: 'error',
-                            icon: 'error', 
-                            title: data.error, 
-                            })
-                        }
+                            icon: 'error',
+                            title: data.error,
+                        })
+                    }
                     // End Message  
-                        }
-                    })
                 }
+            })
+        }
         // Coupon Remove End 
-        </script>
+    </script>
 
 
 

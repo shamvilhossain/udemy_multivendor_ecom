@@ -236,12 +236,9 @@
                 <div class="menu-title">Setting Manage</div>
             </a>
             <ul>
-                <li> <a href="{{ route('site.setting') }}"><i class="bx bx-right-arrow-alt"></i>Site Setting</a>
-                </li>
+                <li> <a href="{{ route('site.setting') }}"><i class="bx bx-right-arrow-alt"></i>Site Setting</a></li>
     
-                    <li> <a href="{{ route('publish.review') }}"><i class="bx bx-right-arrow-alt"></i>Publish Review</a>
-                </li>
-    
+                <li> <a href="{{ route('seo.setting') }}"><i class="bx bx-right-arrow-alt"></i>Seo Setting</a></li>
     
             </ul>
         </li>
