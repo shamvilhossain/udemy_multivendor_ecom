@@ -79,4 +79,8 @@ class AllUserController extends Controller
 
     }// End Method 
 
+    public function UserTrackOrder(){
+        return view('frontend.userdashboard.user_track_order');
+    }// End Method 
+
 }
