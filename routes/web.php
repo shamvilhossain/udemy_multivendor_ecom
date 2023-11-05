@@ -318,6 +318,13 @@ Route::get('/vendor/all', [IndexController::class, 'VendorAll'])->name('vendor.a
 Route::get('/product/category/{id}/{slug}', [IndexController::class, 'CatWiseProduct']);
 Route::get('/product/subcategory/{id}/{slug}', [IndexController::class, 'SubCatWiseProduct']);
 
+// Search All Route 
+Route::controller(IndexController::class)->group(function(){
+
+    Route::post('/search' , 'ProductSearch')->name('product.search'); 
+   
+});
+
 // Product View Modal With Ajax
 
 Route::get('/product/view/modal/{id}', [IndexController::class, 'ProductViewAjax']);
