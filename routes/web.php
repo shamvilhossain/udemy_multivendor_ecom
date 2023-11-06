@@ -321,7 +321,8 @@ Route::get('/product/subcategory/{id}/{slug}', [IndexController::class, 'SubCatW
 // Search All Route 
 Route::controller(IndexController::class)->group(function(){
 
-    Route::post('/search' , 'ProductSearch')->name('product.search'); 
+    Route::post('/search' , 'ProductSearch')->name('product.search');
+    Route::post('/search-product' , 'SearchProduct'); 
    
 });
 
