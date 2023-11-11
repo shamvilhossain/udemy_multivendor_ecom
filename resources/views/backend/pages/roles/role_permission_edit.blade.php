@@ -28,7 +28,7 @@
                         <div class="card">
                             <div class="card-body">
 
-                                <form id="myForm" method="post" action="{{ route('role.permission.store') }}">
+                                <form id="myForm" method="post" action="{{ route('admin.roles.update', $role->id) }}">
                                     @csrf
 
                                     <div class="row mb-3">
@@ -36,13 +36,7 @@
                                             <h6 class="mb-0">Roles Name</h6>
                                         </div>
                                         <div class="form-group col-sm-9 text-secondary">
-                                            <select name="role_id" class="form-select mb-3"
-                                                aria-label="Default select example">
-                                                <option selected="">Open this select menu</option>
-                                                @foreach ($roles as $role)
-                                                    <option value="{{ $role->id }}">{{ $role->name }}</option>
-                                                @endforeach
-                                            </select>
+                                            <input type="text" name="name" value="{{ $role->name }}">
                                         </div>
                                     </div>
 
@@ -59,9 +53,15 @@
                                     @foreach ($permission_groups as $group)
                                         <div class="row"><!--  // Start row  -->
                                             <div class="col-3">
+
+                                                @php
+                                                    $permissions = App\Models\User::getpermissionByGroupName($group->group_name);
+                                                @endphp
+
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="checkbox" value=""
-                                                        id="flexCheckDefault">
+                                                        id="flexCheckDefault"
+                                                        {{ App\Models\User::roleHasPermissions($role, $permissions) ? 'checked' : '' }}>
                                                     <label class="form-check-label"
                                                         for="flexCheckDefault">{{ $group->group_name }}</label>
                                                 </div>
@@ -72,14 +72,13 @@
 
                                             <div class="col-9">
 
-                                                @php
-                                                    $permissions = App\Models\User::getpermissionByGroupName($group->group_name);
-                                                @endphp
+
 
                                                 @foreach ($permissions as $permission)
                                                     <div class="form-check">
-                                                        <input class="form-check-input" name="permission[]" type="checkbox"
-                                                            value="{{ $permission->id }}"
+                                                        <input class="form-check-input" name="permission[]"
+                                                            {{ $role->hasPermissionTo($permission->name) ? 'checked' : '' }}
+                                                            type="checkbox" value="{{ $permission->id }}"
                                                             id="flexCheckDefault{{ $permission->id }}">
                                                         <label class="form-check-label"
                                                             for="flexCheckDefault{{ $permission->id }}">{{ $permission->name }}</label>
@@ -106,6 +105,9 @@
 
 
                         </div>
+
+
+
 
                     </div>
                 </div>
