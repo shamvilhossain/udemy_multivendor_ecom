@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class AdminController extends Controller
 {
@@ -149,4 +151,46 @@ class AdminController extends Controller
         return redirect()->route('inactive.vendor')->with($notification);
 
     }// End Mehtod 
+
+    ///////////// Admin All Method //////////////
+
+
+    public function AllAdmin(){
+        $alladminuser = User::where('role','admin')->latest()->get();
+        return view('backend.admin.all_admin',compact('alladminuser'));
+    }// End Mehtod
+
+    public function AddAdmin(){
+        $roles = Role::all();
+        return view('backend.admin.add_admin',compact('roles'));
+    }// End Mehtod 
+
+
+    public function AdminUserStore(Request $request){
+
+        $user = new User();
+        $user->username = $request->username;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->address = $request->address;
+        $user->password = Hash::make($request->password);
+        $user->role = 'admin';
+        $user->status = 'active';
+        $user->save();
+
+        if ($request->roles) {
+            $user->assignRole($request->roles);
+        }
+
+         $notification = array(
+            'message' => 'New Admin User Inserted Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('all.admin')->with($notification);
+
+    }// End Mehtod 
+    
+    
 }
