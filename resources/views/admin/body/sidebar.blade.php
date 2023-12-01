@@ -62,7 +62,7 @@
 
         <li>
             <a href="javascript:;" class="has-arrow">
-                <div class="parent-icon"><i class="bx bx-category"></i>
+                <div class="parent-icon"><i class="lni lni-codepen"></i>
                 </div>
                 <div class="menu-title">SubCategory</div>
             </a>
@@ -76,7 +76,7 @@
         </li>
         <li>
             <a href="javascript:;" class="has-arrow">
-                <div class="parent-icon"><i class="bx bx-category"></i>
+                <div class="parent-icon"><i class="lni lni-fresh-juice"></i>
                 </div>
                 <div class="menu-title">Product Manage</div>
             </a>
@@ -91,7 +91,7 @@
 
         <li>
             <a href="javascript:;" class="has-arrow">
-                <div class="parent-icon"><i class="bx bx-category"></i>
+                <div class="parent-icon"><i class="lni lni-gallery"></i>
                 </div>
                 <div class="menu-title">Slider Manage</div>
             </a>
@@ -106,7 +106,7 @@
 
         <li>
             <a href="javascript:;" class="has-arrow">
-                <div class="parent-icon"><i class="bx bx-category"></i>
+                <div class="parent-icon"><i class="lni lni-image"></i>
                 </div>
                 <div class="menu-title">Banner Manage</div>
             </a>
@@ -120,7 +120,7 @@
         </li>
         <li>
             <a href="javascript:;" class="has-arrow">
-                <div class="parent-icon"><i class="bx bx-category"></i>
+                <div class="parent-icon"><i class="lni lni-invention"></i>
                 </div>
                 <div class="menu-title">Coupon System</div>
             </a>
@@ -135,7 +135,7 @@
 
         <li>
             <a href="javascript:;" class="has-arrow">
-                <div class="parent-icon"><i class="bx bx-category"></i>
+                <div class="parent-icon"><i class="lni lni-map"></i>
                 </div>
                 <div class="menu-title">Shipping Area </div>
             </a>
@@ -169,7 +169,7 @@
         </li>
         <li>
             <a href="javascript:;" class="has-arrow">
-                <div class="parent-icon"><i class='bx bx-cart'></i>
+                <div class="parent-icon"><i class='lni lni-paperclip'></i>
                 </div>
                 <div class="menu-title">Return Order </div>
             </a>
@@ -184,7 +184,7 @@
 
         <li>
             <a href="javascript:;" class="has-arrow">
-                <div class="parent-icon"><i class="bx bx-category"></i>
+                <div class="parent-icon"><i class="lni lni-stats-up"></i>
                 </div>
                 <div class="menu-title">Reports Manage</div>
             </a>
@@ -214,7 +214,7 @@
 
         <li>
             <a href="javascript:;" class="has-arrow">
-                <div class="parent-icon"><i class="bx bx-category"></i>
+                <div class="parent-icon"><i class="lni lni-indent-increase"></i>
                 </div>
                 <div class="menu-title">Review Manage</div>
             </a>
@@ -233,7 +233,7 @@
 
         <li>
             <a href="javascript:;" class="has-arrow">
-                <div class="parent-icon"><i class='bx bx-cart'></i>
+                <div class="parent-icon"><i class='lni lni-network'></i>
                 </div>
                 <div class="menu-title">Vendor Manage </div>
             </a>
@@ -261,7 +261,7 @@
 
         <li>
             <a href="javascript:;" class="has-arrow">
-                <div class="parent-icon"><i class="bx bx-category"></i>
+                <div class="parent-icon"><i class="lni lni-cart-full"></i>
                 </div>
                 <div class="menu-title">Stock Manage</div>
             </a>
@@ -274,7 +274,7 @@
         <li class="menu-label">Roles And Permission</li>
         <li>
             <a class="has-arrow" href="javascript:;">
-                <div class="parent-icon"><i class="bx bx-line-chart"></i>
+                <div class="parent-icon"><i class="lni lni-users"></i>
                 </div>
                 <div class="menu-title">Role & Permission</div>
             </a>
@@ -295,7 +295,7 @@
 
         <li>
             <a class="has-arrow" href="javascript:;">
-                <div class="parent-icon"><i class="bx bx-line-chart"></i>
+                <div class="parent-icon"><i class="lni lni-user"></i>
                 </div>
                 <div class="menu-title">Admin Manage </div>
             </a>
