@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Frontend;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category; 
 use App\Models\Brand;
 use App\Models\Product;
-use App\Models\User; 
 
 class ShopController extends Controller
 {
@@ -88,5 +88,4 @@ class ShopController extends Controller
         return redirect()->route('shop.page',$catUrl.$brandUrl.$priceRangeUrl);
 
     }// End Method 
-
 }

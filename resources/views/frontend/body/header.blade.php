@@ -330,7 +330,7 @@
 
 
                                 <li>
-                                    <a href="page-contact.html">Contact</a>
+                                    <a href="{{ route('shop.page') }}">Shop</a>
                                 </li>
                             </ul>
                         </nav>
