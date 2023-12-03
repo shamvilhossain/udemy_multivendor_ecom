@@ -19,6 +19,8 @@ use App\Http\Controllers\Backend\RoleController;
 
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\Frontend\ShopController;
+
 use App\Http\Controllers\User\WishlistController;
 use App\Http\Controllers\User\CompareController;
 use App\Http\Controllers\Backend\CouponController;
@@ -370,6 +372,14 @@ Route::controller(IndexController::class)->group(function(){
     Route::post('/search' , 'ProductSearch')->name('product.search');
     Route::post('/search-product' , 'SearchProduct'); 
    
+});
+
+// Shop Page All Route 
+Route::controller(ShopController::class)->group(function(){
+
+    Route::get('/shop' , 'ShopPage')->name('shop.page');
+    Route::post('/shop/filter' , 'ShopFilter')->name('shop.filter');
+    
 });
 
 // Product View Modal With Ajax
